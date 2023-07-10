@@ -50,6 +50,7 @@ The following options are available with SelectAreaFeature (showing you here wit
 | color         | The color of the line when drawing. For example 'blue' , '#333333'| 'green'|```selectfeature.options.color = '#663399' ;```|
 | weight | The weight of the line | 2 |```selectfeature.options.weight = 1 ;``` | 
 | dashArray | Sets or read the stroke dash pattern of the line  | '5, 5, 1, 5' |```selectfeature.options.dasArray = '2, 2, 4, 2' ;``` |
+| autodisable | If true, autodisables the plugin when an area ist finished drawing | `false` | |
 
 
 ### Methods
@@ -62,5 +63,15 @@ The following methods are supported by the plugin:
 | removeLastArea                  |                   |           |                      | Remove the latest drawn area from the map     |
 | getFeaturesSelected(<i>layertype<i>)| <i>layertype</i> String| Yes       | Array of layers selected of <layertype>| <i>layertype</i> is one of the following values: 'polyline', 'polygon', 'rectangle', ' marker', 'circle' or 'all' |
   
+### Events
+The following events may be fired by the plugin:
+
+| Event                          | Data   |  Description                                   |
+|---------------------------------|------------------------------------------------------------------|
+| drawend                   |  MouseEvent   | Fired when drawing an area is finished              |
+| drawstart                   |  MouseEvent                 | Fired when drawing an area is started |
+| selectareaenabled                  |                                     | Fired as soon as the plugin is enabled   |
+| selectareadisabled | | Fired when the plugin is disabled| 
+
 ## License
 Leaflet.SelectAreaFeature is free software, and may be redistributed under the GPL-3.0 license.
