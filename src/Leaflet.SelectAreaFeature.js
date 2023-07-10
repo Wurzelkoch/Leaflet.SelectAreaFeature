@@ -21,7 +21,8 @@
 			   weight: 2, 
 			   dashArray: '5, 5, 1, 5' ,
 			   selCursor: 'crosshair',
-			   normCursor: ''
+			   normCursor: '',
+			   autodisable: false
     },
 
     initialize: function (map, options) {
@@ -78,14 +79,17 @@
 
 		  this._flag_new_shape = false;
 		  this._map.off('mousemove');
-		  if (this.onDrawEnd) this.onDrawEnd();
+          if(this.options.autodisable) this.disable();
+          this._map.fireEvent('drawend', ev);
+		  if (this.onDrawEnd) this.onDrawEnd(ev);
 		}
 	},
 
 	onDrawStart: null,
 
 	_doMouseDown: function(ev) {
-	  if (this.onDrawStart) this.onDrawStart();
+      this._map.fireEvent('drawstart', ev);
+	  if (this.onDrawStart) this.onDrawStart(ev);
 
 	  this._ARR_latlon = [];
 	  this._flag_new_shape = true;
