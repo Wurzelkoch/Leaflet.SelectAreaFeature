@@ -52,6 +52,7 @@
 		this._map.dragging.disable();
 		
         this._map._container.style.cursor = this.options.selCursor;
+        this._map.fireEvent('selectareaenabled', );
     },
 
     removeHooks: function() {
@@ -61,6 +62,7 @@
         this._map._container.style.cursor = this.options.normCursor;
 		
 		this._map.dragging.enable();
+        this._map.fireEvent('selectareadisabled', );
     },
 
 	onDrawEnd: null,
