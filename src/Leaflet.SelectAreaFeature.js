@@ -81,8 +81,14 @@
 
 		  this._flag_new_shape = false;
 		  this._map.off('mousemove');
-          if(this.options.autodisable) this.disable();
-          this._map.fireEvent('drawend', ev);
+		  if(this._ARR_latlon){
+            if(this.options.autodisable) this.disable();
+            if(ev.originalEvent.target.className.baseVal == "leaflet-interactive") 
+                //don't propagate ev as drawend if it's really a click on some button on the map or stuff like this.
+                //more precisely: only propagate, if we have actually drawn something and not just clicked, 
+                //and if drawing didn't end on some other map element
+                this._map.fireEvent('drawend', ev);
+          }
 		  if (this.onDrawEnd) this.onDrawEnd(ev);
 		}
 	},
